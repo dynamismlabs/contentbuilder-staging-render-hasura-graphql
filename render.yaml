@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: staging-graphql-contentbuilder
+    plan: starter
+    env: docker
+    region: virginia
+    autoDeploy: false
+    healthCheckPath: /healthz
+    envVars:
+      - key: HASURA_GRAPHQL_DATABASE_URL
+        fromDatabase:
+          name: staging-db-contentbuilder
+          property: connectionString
+      - key: HASURA_GRAPHQL_ENABLE_CONSOLE
+        value: true
+      - key: HASURA_GRAPHQL_ADMIN_SECRET
+        generateValue: true
+      - key: HASURA_GRAPHQL_EXPERIMENTAL_FEATURES
+        value: naming_convention
+      - key: HASURA_GRAPHQL_DEFAULT_NAMING_CONVENTION
+        value: graphql-default
+      - key: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+        value: anonymous
+      - key: HASURA_FF_NAMING_CONVENTION_SEP_2023
+        value: true
+databases:
+  - name: staging-db-contentbuilder
+    postgresMajorVersion: 18
+    diskSizeGB: 5
+    region: virginia
