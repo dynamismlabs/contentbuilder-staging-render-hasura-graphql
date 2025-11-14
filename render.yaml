@@ -26,5 +26,6 @@ services:
 databases:
   - name: staging-db-contentbuilder
     postgresMajorVersion: 18
-    diskSizeGB: 5
+    diskSizeGB: 1
+    plan: starter
     region: virginia
