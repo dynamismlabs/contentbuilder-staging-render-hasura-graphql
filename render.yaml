@@ -3,7 +3,7 @@ services:
     name: staging-graphql-contentbuilder
     plan: starter
     env: docker
-    region: virginia
+    region: ohio
     autoDeploy: false
     healthCheckPath: /healthz
     envVars:
@@ -26,6 +26,5 @@ services:
 databases:
   - name: staging-db-contentbuilder
     postgresMajorVersion: 18
-    diskSizeGB: 1
-    plan: starter
-    region: virginia
+    plan: free
+    region: ohio
